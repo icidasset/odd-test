@@ -1,0 +1,19 @@
+{
+  "name": "odd-test",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@oddjs/odd": "file:../ts-odd"
+  },
+  "devDependencies": {
+    "typescript": "^5.0.2",
+    "vite": "^4.4.9",
+    "vite-plugin-wasm": "^3.2.2"
+  }
+}
