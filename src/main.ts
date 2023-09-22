@@ -1,7 +1,7 @@
 import "./style.css"
 
 import * as odd from "@oddjs/odd"
-import * as web3storage from "@oddjs/odd/compositions/web3storage"
+import * as web3storage from "odd-web3storage"
 // import * as local from "@oddjs/odd/compositions/local"
 
 
@@ -10,6 +10,7 @@ import * as web3storage from "@oddjs/odd/compositions/web3storage"
 const config = { namespace: "odd-test", debug: true }
 const components = await web3storage.components(config)
 const program = await odd.program(config, { ...components })
+const glob = globalThis as any
 
 
 let fs: odd.FileSystem
@@ -28,6 +29,9 @@ program.authority.on("request:authorised", event => {
 
 async function initialise() {
   const volume = await program.account.volume()
+
+  glob.volume = volume
+
   const has = await program.authority.has([
     odd.authority.account,
     odd.authority.fileSystem.rootAccess(volume.id)
@@ -88,8 +92,6 @@ async function testChannel() {
 
 
 // @ts-ignore
-self.fs = fs
-// @ts-ignore
-self.odd = odd
-// @ts-ignore
-self.program = program
+glob.fs = fs
+glob.odd = odd
+glob.program = program

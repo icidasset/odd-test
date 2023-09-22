@@ -9,7 +9,8 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@oddjs/odd": "file:../ts-odd"
+    "@oddjs/odd": "icidasset/ts-odd#authority",
+    "odd-web3storage": "icidasset/odd-web3storage"
   },
   "devDependencies": {
     "typescript": "^5.0.2",
