@@ -53,44 +53,6 @@ async function initialise() {
 await initialise()
 
 
-async function testFileSystem() {
-  const before = performance.now()
-
-  const fromPath = odd.path.file("private", "a", "b", "file")
-  const toPath = odd.path.file("private", "a", "b", "c", "d", "file")
-
-  await fs.write(fromPath, "utf8", "💃")
-  // await fs.copy(fromPath, toPath)
-
-  const time = performance.now() - before
-
-  console.log(`${time.toFixed(0)}ms`)
-}
-
-
-async function testChannel() {
-  const accountDID = await program.identity.account()
-  if (!accountDID) return console.log("Not authed, so not establishing a channel")
-
-  const channel = await program.components.channel.establish({
-    topic: accountDID,
-    onmessage: event => console.log(event)
-  })
-
-  setTimeout(
-    () => {
-      console.log("Sending channel message ...")
-      channel.send("👋")
-    },
-    2000
-  )
-}
-
-
-// testFileSystem()
-// testChannel()
-
-
 // @ts-ignore
 glob.fs = fs
 glob.odd = odd
